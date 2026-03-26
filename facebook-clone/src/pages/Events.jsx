@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Navbar from '../components/Navbar';
 import { FaCalendarAlt, FaPlus, FaSearch, FaMapMarkerAlt, FaUserFriends, FaGlobe, FaClock } from 'react-icons/fa';
-import { MdEventAvailable, MdEventNote, MdGroups, MdCake, MdVideoCall } from 'react-icons/md';
+import { MdEventAvailable, MdEventNote, MdGroups, MdCake, MdVideoCall, MdSettings } from 'react-icons/md';
 
 export default function Events() {
     const [activeTab, setActiveTab] = useState('Discover');
@@ -49,15 +49,24 @@ export default function Events() {
     ];
 
     return (
-        <div className="min-h-screen bg-light-bg dark:bg-dark-bg transition-colors">
+        <div className="min-h-screen bg-[#F0F2F5] dark:bg-dark-bg transition-colors pb-10">
             <Navbar />
 
             <div className="flex">
                 {/* ================= LEFT SIDEBAR ================= */}
-                <div className="hidden lg:block w-[360px] h-[calc(100vh-56px)] bg-light-card dark:bg-dark-card sticky top-[56px] overflow-y-auto p-4 border-r border-light-border dark:border-dark-border">
+                <div className="hidden lg:flex w-[360px] h-[calc(100vh-56px)] bg-white dark:bg-dark-card sticky top-[56px] overflow-y-auto px-4 py-4 border-r border-[#CED0D4] dark:border-dark-border flex-col">
                     <div className="flex justify-between items-center mb-4">
-                        <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">Events</h1>
-                        {/* Settings logic if needed */}
+                        <h1 className="text-2xl font-bold text-[#050505] dark:text-dark-text">Events</h1>
+                        <div className="w-9 h-9 bg-gray-100 dark:bg-dark-hover rounded-full flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors">
+                            <MdSettings className="text-xl text-[#050505] dark:text-dark-text" />
+                        </div>
+                    </div>
+
+                    <div className="mb-4">
+                        <div className="bg-[#F0F2F5] dark:bg-dark-bg rounded-full px-4 py-2 flex items-center mb-2">
+                            <FaSearch className="text-[#65676B] mr-2 text-[15px]" />
+                            <input type="text" placeholder="Search events" className="bg-transparent outline-none w-full text-[15px] dark:text-dark-text" />
+                        </div>
                     </div>
 
                     <div className="flex flex-col gap-1 mb-4">
@@ -65,114 +74,89 @@ export default function Events() {
                             <div
                                 key={item.id}
                                 onClick={() => setActiveTab(item.id)}
-                                className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-colors ${activeTab === item.id ? 'bg-light-hover dark:bg-dark-hover' : 'hover:bg-light-hover dark:hover:bg-dark-hover'}`}
+                                className={`flex items-center gap-3 px-3 py-2 rounded-xl cursor-pointer transition-all ${activeTab === item.id ? 'bg-[#E7F3FF] dark:bg-[#252F3C]' : 'hover:bg-gray-100 dark:hover:bg-dark-hover'}`}
                             >
-                                <div className={`w-9 h-9 rounded-full flex items-center justify-center ${activeTab === item.id ? 'bg-fb text-white' : 'bg-light-bg dark:bg-dark-hover text-light-text dark:text-dark-text'}`}>
+                                <div className={`w-9 h-9 rounded-full flex items-center justify-center ${activeTab === item.id ? 'bg-fb text-white shadow-md' : 'bg-gray-100 dark:bg-dark-bg text-[#050505] dark:text-dark-text'}`}>
                                     <item.icon className="text-[20px]" />
                                 </div>
-                                <span className={`font-semibold text-[15px] ${activeTab === item.id ? 'text-fb' : 'text-light-text dark:text-dark-text'}`}>{item.label}</span>
+                                <span className={`font-bold text-[15px] ${activeTab === item.id ? 'text-fb' : 'text-[#050505] dark:text-dark-text'}`}>{item.label}</span>
                             </div>
                         ))}
                     </div>
 
-                    <button className="w-full bg-[#E7F3FF] dark:bg-[#263951] text-fb dark:text-blue-400 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-blue-100 dark:hover:bg-[#3A4B63] transition-colors">
+                    <button className="w-full bg-[#E7F3FF] dark:bg-[#263951] text-fb dark:text-blue-300 py-2.5 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-blue-100 dark:hover:bg-[#3A4B63] transition-all transform active:scale-95">
                         <FaPlus /> Create New Event
                     </button>
 
-                    <div className="border-t border-light-border dark:border-dark-border my-4"></div>
+                    <div className="border-t border-[#CED0D4] dark:border-dark-border my-6"></div>
 
-                    <h3 className="font-semibold text-[17px] mb-2 text-light-text dark:text-dark-text">Upcoming Birthdays</h3>
-                    <div className="bg-light-bg dark:bg-dark-hover p-4 rounded-lg flex gap-3 shadow-sm border border-light-border dark:border-dark-border">
-                        <div className="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-400 rounded-full flex items-center justify-center text-white text-xl">
+                    <h3 className="font-bold text-[17px] mb-3 px-2 text-[#050505] dark:text-dark-text">Upcoming Birthdays</h3>
+                    <div className="bg-white dark:bg-dark-bg p-4 rounded-xl flex gap-3 shadow-premium border border-[#CED0D4] dark:border-dark-border hover:shadow-lg transition-shadow cursor-pointer">
+                        <div className="w-12 h-12 bg-gradient-to-br from-[#FF42A1] to-[#FF8235] rounded-full flex items-center justify-center text-white text-2xl shadow-md">
                             <MdCake />
                         </div>
-                        <div>
-                            <p className="font-semibold text-sm text-light-text dark:text-dark-text"><span className="font-bold">Rohan</span> and <span className="font-bold">3 others</span> have birthdays today.</p>
-                            <button className="text-fb text-sm font-semibold mt-1 hover:underline">Wish them</button>
+                        <div className="flex-1">
+                            <p className="text-[15px] text-[#050505] dark:text-dark-text leading-tight">
+                                <span className="font-bold">Rohan Mehta</span> and <span className="font-bold">3 others</span> have birthdays today.
+                            </p>
+                            <button className="text-fb dark:text-blue-400 text-[14px] font-bold mt-2 hover:underline">Wish them</button>
                         </div>
                     </div>
                 </div>
 
                 {/* ================= RIGHT MAIN CONTENT ================= */}
-                <div className="flex-1 min-w-0">
-
-                    {/* Mobile Navigation */}
-                    <div className="lg:hidden p-4 bg-light-card dark:bg-dark-card shadow-sm sticky top-[56px] z-20">
-                        <div className="flex justify-between items-center mb-3">
-                            <h1 className="text-2xl font-bold text-light-text dark:text-dark-text">Events</h1>
-                            <button className="bg-[#E7F3FF] dark:bg-[#263951] text-fb py-1.5 px-3 rounded-md font-semibold text-sm dark:text-blue-400"><FaPlus /> Create</button>
-                        </div>
-                        <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
-                            {sidebarItems.map(item => (
-                                <button
-                                    key={item.id}
-                                    onClick={() => setActiveTab(item.id)}
-                                    className={`px-4 py-1.5 rounded-full text-sm font-semibold whitespace-nowrap ${activeTab === item.id ? 'bg-fb text-white' : 'bg-light-bg dark:bg-dark-hover text-light-text dark:text-dark-text'}`}
-                                >
-                                    {item.label}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Main Content Render */}
-                    <div className="p-4 md:p-8 max-w-5xl mx-auto">
-
+                <div className="flex-1 min-w-0 bg-[#F0F2F5] dark:bg-dark-bg/40">
+                    <div className="p-4 md:p-8 max-w-6xl mx-auto">
                         {activeTab === 'Discover' && (
-                            <>
-                                <h2 className="text-2xl font-bold mb-6 text-light-text dark:text-dark-text">Upcoming Events</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div className="animate-fade-in">
+                                <div className="flex justify-between items-end mb-6">
+                                    <h2 className="text-2xl font-extrabold text-[#050505] dark:text-dark-text">Events in New Delhi, India</h2>
+                                    <button className="text-fb font-bold hover:underline">See all</button>
+                                </div>
+                                
+                                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                                     {upcomingEvents.map(event => (
-                                        <div key={event.id} className="bg-light-card dark:bg-dark-card rounded-lg overflow-hidden shadow-sm border border-light-border dark:border-dark-border group cursor-pointer hover:shadow-md transition-shadow">
-                                            <div className="relative">
-                                                <img src={event.img} className="w-full h-40 object-cover" alt={event.title} />
-                                                <div className="absolute top-2 left-2 bg-white dark:bg-dark-card px-2 py-1 rounded-md text-center shadow">
-                                                    <p className="text-xs font-bold text-red-500 uppercase">{event.date.split(',')[0]}</p>
-                                                    <p className="text-lg font-bold text-light-text dark:text-dark-text">{event.date.split(' ')[2]}</p>
+                                        <div key={event.id} className="fb-card p-0 overflow-hidden group hover:translate-y-[-4px] transition-all duration-300">
+                                            <div className="relative h-48">
+                                                <img src={event.img} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt={event.title} />
+                                                <div className="absolute top-3 left-3 bg-white/95 dark:bg-dark-card/95 backdrop-blur-sm p-1.5 rounded-xl text-center shadow-premium min-w-[50px]">
+                                                    <p className="text-[11px] font-extrabold text-[#FF42A1] uppercase tracking-tighter">{event.date.split(',')[0]}</p>
+                                                    <p className="text-xl font-black text-[#050505] dark:text-dark-text">{event.date.split(' ')[2]}</p>
+                                                </div>
+                                                <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                    <div className="w-9 h-9 bg-white dark:bg-dark-card rounded-full flex items-center justify-center shadow-lg cursor-pointer hover:bg-gray-100 transition-colors">
+                                                        <FaSearch className="text-fb" />
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div className="p-4">
-                                                <p className="text-xs font-semibold text-red-500 mb-1 uppercase">{event.date} AT {event.time}</p>
-                                                <h3 className="text-xl font-bold mb-1 leading-snug group-hover:underline text-light-text dark:text-dark-text">{event.title}</h3>
-                                                <p className="text-sm text-light-text2 dark:text-dark-text2 mb-4">{event.location}</p>
-
-                                                <div className="flex items-center justify-between text-xs text-light-text2 dark:text-dark-text2 mb-4">
-                                                    <span>{event.interested} interested</span>
-                                                    <span>{event.category}</span>
+                                                <p className="text-[13px] font-bold text-fb dark:text-blue-400 mb-1 uppercase tracking-tight">{event.date} AT {event.time}</p>
+                                                <h3 className="text-[17px] font-extrabold mb-1 leading-snug group-hover:text-fb transition-colors text-[#050505] dark:text-dark-text line-clamp-2">{event.title}</h3>
+                                                <div className="flex items-center gap-1.5 text-[13px] text-[#65676B] dark:text-dark-text2 mb-4">
+                                                    <FaMapMarkerAlt className="shrink-0" />
+                                                    <span className="truncate">{event.location}</span>
                                                 </div>
 
-                                                <div className="flex gap-2">
-                                                    <button className="flex-1 bg-[#E7F3FF] dark:bg-[#263951] text-fb dark:text-blue-400 py-1.5 rounded-md font-semibold text-sm hover:bg-blue-100 dark:hover:bg-[#3A4B63] transition-colors">Interested</button>
-                                                    <button className="flex-1 bg-light-bg dark:bg-dark-hover text-light-text dark:text-dark-text py-1.5 rounded-md font-semibold text-sm hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">Share</button>
+                                                <div className="flex items-center justify-between text-[13px] font-medium text-[#65676B] dark:text-dark-text2 border-t border-gray-100 dark:border-dark-border pt-4 mb-4">
+                                                    <span className="flex items-center gap-1"><FaUserFriends className="text-lg" /> {event.interested} interested</span>
+                                                    <span className="bg-gray-100 dark:bg-dark-hover px-2 py-0.5 rounded-md">{event.category}</span>
+                                                </div>
+
+                                                <div className="flex gap-2 mt-auto">
+                                                    <button className="flex-1 bg-[#E4E6EB] dark:bg-dark-hover text-[#050505] dark:text-dark-text py-2 rounded-lg font-bold text-[14px] hover:bg-[#D8DADF] transition-colors flex items-center justify-center gap-2">
+                                                        <span className="text-xl">★</span> Interested
+                                                    </button>
+                                                    <button className="w-12 bg-[#E4E6EB] dark:bg-dark-hover text-[#050505] dark:text-dark-text py-2 rounded-lg font-bold hover:bg-[#D8DADF] transition-colors flex items-center justify-center">
+                                                        <FaGlobe />
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     ))}
                                 </div>
-                            </>
-                        )}
-
-                        {activeTab === 'Calendar' && (
-                            <div className="bg-light-card dark:bg-dark-card p-10 rounded-lg text-center shadow-sm">
-                                <div className="w-20 h-20 bg-gray-100 dark:bg-dark-hover rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <FaCalendarAlt className="text-4xl text-gray-400 dark:text-dark-text2" />
-                                </div>
-                                <h3 className="text-xl font-bold text-light-text dark:text-dark-text mb-2">No events this week</h3>
-                                <p className="text-light-text2 dark:text-dark-text2 mb-6">Check back later or discover new events happening around you.</p>
-                                <button className="bg-fb text-white px-6 py-2 rounded-md font-semibold hover:bg-blue-600 transition-colors">Find Events</button>
                             </div>
                         )}
-
-                        {/* Simple Placholders for other tabs */}
-                        {(activeTab !== 'Discover' && activeTab !== 'Calendar') && (
-                            <div className="text-center py-20">
-                                <h3 className="text-xl font-bold text-light-text dark:text-dark-text">{activeTab} View</h3>
-                                <p className="text-light-text2 dark:text-dark-text2 mt-2">This section is currently empty.</p>
-                            </div>
-                        )}
-
                     </div>
-
                 </div>
             </div>
         </div>

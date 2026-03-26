@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaUserFriends, FaStore, FaBookmark, FaClock, FaUsers, FaExclamationTriangle } from 'react-icons/fa';
+import { FaUserFriends, FaStore, FaBookmark, FaClock, FaUsers } from 'react-icons/fa';
 import { MdGroups, MdOndemandVideo, MdEvent } from 'react-icons/md';
 
 export default function Sidebar() {
@@ -21,63 +21,53 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="w-[360px] hidden xl:flex flex-col h-[calc(100vh-56px)] fixed left-0 top-[56px] overflow-y-auto pb-4 scrollbar-hide pl-4 pr-2 hover:scrollbar-default z-40 bg-transparent">
+        <div className="w-[360px] hidden xl:flex flex-col h-[calc(100vh-56px)] fixed left-0 top-[56px] overflow-y-auto pb-4 pl-2 pr-2 hover:sidebar-scroll z-40 bg-transparent">
 
             {/* User Profile Link */}
-            <Link to="/profile" className="flex items-center gap-3 p-2 hover:bg-light-hover dark:hover:bg-dark-hover rounded-xl cursor-pointer transition-colors mt-4">
+            <Link to="/profile" className="flex items-center gap-3 p-2 hover:bg-[#E4E6EB] dark:hover:bg-dark-hover rounded-lg cursor-pointer transition-colors mt-2">
                 <img
                     src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
                     alt="User"
                     className="w-9 h-9 rounded-full object-cover border border-light-border dark:border-dark-border"
                 />
-                <span className="font-semibold text-[15px] text-light-text dark:text-dark-text">Ravinder Singh</span>
+                <span className="font-medium text-[15px] text-light-text dark:text-dark-text">Ravinder Singh</span>
             </Link>
-
-            {/* Warning Item */}
-            <div className="flex items-center gap-3 p-2 hover:bg-light-hover dark:hover:bg-dark-hover rounded-xl cursor-pointer transition-colors">
-                <div className="w-9 h-9 rounded-full bg-red-100 flex items-center justify-center">
-                    <FaExclamationTriangle className="text-red-500 text-xl" />
-                </div>
-                <div className="flex flex-col">
-                    <span className="font-semibold text-[15px] text-light-text dark:text-dark-text">Account Warning</span>
-                    <span className="text-[12px] text-light-error dark:text-dark-error font-medium">1 Strike applied</span>
-                </div>
-                <div className="w-2 h-2 bg-light-error dark:bg-dark-error rounded-full ml-auto"></div>
-            </div>
 
             {/* Menu Items */}
             {menuItems.map((item) => (
-                <Link to={item.link} key={item.id} className="flex items-center gap-3 p-2 hover:bg-light-hover dark:hover:bg-dark-hover rounded-xl cursor-pointer transition-colors group">
+                <Link to={item.link} key={item.id} className="flex items-center gap-3 p-2 hover:bg-[#E4E6EB] dark:hover:bg-dark-hover rounded-lg cursor-pointer transition-colors group">
                     <div className="w-9 h-9 rounded-full flex items-center justify-center">
                         <item.icon className={`text-[24px] ${item.color}`} />
                     </div>
-                    <span className="font-medium text-[15px] text-light-text dark:text-dark-text group-hover:font-semibold transition-all">
+                    <span className="font-medium text-[15px] text-light-text dark:text-dark-text">
                         {item.label}
                     </span>
                     {item.label === 'Marketplace' && (
-                        <span className="w-2 h-2 bg-fb rounded-full ml-auto"></span>
+                        <div className="w-2 h-2 bg-fb rounded-full ml-auto mr-2"></div>
                     )}
                 </Link>
             ))}
 
-            <div className="my-2 border-b border-light-border dark:border-dark-border mx-2"></div>
+            <div className="my-2 border-b border-gray-300 dark:border-dark-border mx-2"></div>
 
             {/* Shortcuts Header */}
-            <div className="flex justify-between items-center px-2 mt-2 group">
-                <h3 className="font-semibold text-[17px] text-light-text2 dark:text-dark-text2 group-hover:text-fb transition-colors">Your Shortcuts</h3>
-                <span className="text-fb text-xs hidden group-hover:block cursor-pointer bg-blue-50 dark:bg-blue-900/30 px-2 py-1 rounded-md">Edit</span>
+            <div className="flex justify-between items-center px-4 py-2">
+                <h3 className="font-semibold text-[17px] text-[#65676B] dark:text-dark-text2 font-sans">Your shortcuts</h3>
+                <span className="text-fb text-sm hover:bg-gray-100 dark:hover:bg-dark-hover px-2 py-1 rounded-md cursor-pointer opacity-0 transition-opacity">Edit</span>
             </div>
 
             {/* Shortcuts List */}
             {shortcuts.map((item) => (
-                <div key={item.id} className="flex items-center gap-3 p-2 hover:bg-light-hover dark:hover:bg-dark-hover rounded-xl cursor-pointer transition-colors">
+                <div key={item.id} className="flex items-center gap-3 p-2 hover:bg-[#E4E6EB] dark:hover:bg-dark-hover rounded-lg cursor-pointer transition-colors px-4">
                     <img src={item.img} alt={item.label} className="w-9 h-9 rounded-lg object-cover border border-light-border dark:border-dark-border" />
                     <span className="font-medium text-[15px] text-light-text dark:text-dark-text">{item.label}</span>
                 </div>
             ))}
 
-            <div className="mt-auto p-4 textxs text-gray-500">
-                <p className="text-[13px] leading-5 text-light-text2 dark:text-dark-text2">Privacy · Terms · Advertising · Ad Choices · Cookies · More · Meta © 2025</p>
+            <div className="mt-auto px-4 py-4">
+                <p className="text-[13px] leading-5 text-[#65676B] dark:text-dark-text2">
+                    Privacy · Terms · Advertising · Ad Choices · Cookies · More · Meta © 2025
+                </p>
             </div>
         </div>
     );

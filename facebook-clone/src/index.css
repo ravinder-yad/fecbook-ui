@@ -1,34 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-:root {
-  --fb-blue: #1877F2;
+@theme {
+  --color-fb: #1877F2;
+  --color-light-bg: #F0F2F5;
+  --color-light-card: #FFFFFF;
+  --color-light-text: #050505;
+  --color-light-text2: #65676B;
+  --color-light-hover: #E4E6EB;
+  --color-light-border: #CED0D4;
+  --color-light-error: #E41E3F;
+  --color-light-success: #31A24C;
+  --color-light-link: #1877F2;
+
+  --color-dark-bg: #18191A;
+  --color-dark-card: #242526;
+  --color-dark-text: #E4E6EB;
+  --color-dark-text2: #B0B3B8;
+  --color-dark-hover: #3A3B3C;
+  --color-dark-border: #3E4042;
+  --color-dark-error: #F02849;
+  --color-dark-success: #42B72A;
+  --color-dark-link: #2D88FF;
+
+  --shadow-fb: 0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --radius-fb: 8px;
 }
 
 @layer base {
   body {
-    background-color: #F0F2F5;
-    color: #050505;
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 200ms;
+    @apply bg-light-bg text-light-text transition-colors duration-200 antialiased;
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    -webkit-font-smoothing: antialiased;
+    font-family: 'Inter', sans-serif;
   }
 
   .dark body {
-    background-color: #18191A;
-    color: #E4E6EB;
+    @apply bg-dark-bg text-dark-text;
   }
 }
 
-/* Hide scrollbar for Stories but keep functionality */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+/* Facebook Style Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #bcc0c4;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aab0b4;
+}
+
+.fb-card {
+  @apply bg-white rounded-lg shadow-card overflow-hidden;
+}
+
+.fb-input {
+  @apply border border-gray-300 p-3.5 rounded-fb w-full text-[17px] focus:outline-none focus:ring-1 focus:ring-fb;
 }

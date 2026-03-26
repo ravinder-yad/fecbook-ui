@@ -31,76 +31,74 @@ export default function Profile() {
     ];
 
     return (
-        <div className="min-h-screen bg-light-bg dark:bg-dark-bg transition-colors">
+        <div className="min-h-screen bg-[#F0F2F5] dark:bg-dark-bg transition-colors pb-10">
             <Navbar />
 
             {/* Profile Header Container */}
-            <div className="bg-light-card dark:bg-dark-card shadow-sm pb-4 text-light-text dark:text-dark-text">
-                <div className="max-w-[1095px] mx-auto w-full">
+            <div className="bg-white dark:bg-dark-card shadow-sm text-light-text dark:text-dark-text">
+                <div className="max-w-[1095px] mx-auto w-full group">
 
                     {/* Cover Photo */}
-                    <div className="relative h-[200px] md:h-[350px] lg:h-[400px] w-full bg-gradient-to-b from-gray-300 to-gray-400 rounded-b-lg overflow-hidden group cursor-pointer">
+                    <div className="relative h-[200px] md:h-[350px] lg:h-[406px] w-full bg-gradient-to-b from-gray-200 to-gray-300 rounded-b-lg overflow-hidden cursor-pointer">
                         <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" className="w-full h-full object-cover" alt="Cover" />
-                        <button className="absolute bottom-4 right-4 bg-light-card dark:bg-dark-hover text-light-text dark:text-dark-text px-3 py-2 rounded-md font-semibold text-sm flex items-center gap-2 hover:bg-light-hover dark:hover:bg-opacity-80 hidden group-hover:flex transition-colors">
-                            <FaCamera /> Edit cover photo
+                        <button className="absolute bottom-4 right-4 bg-white hover:bg-gray-100 text-[#050505] px-3 py-2 rounded-md font-semibold text-sm flex items-center gap-2 transition-colors shadow-sm">
+                            <FaCamera className="text-lg" /> Add cover photo
                         </button>
                     </div>
 
                     {/* Profile Info Section */}
-                    <div className="px-4 md:px-8 pb-4 border-b border-light-border dark:border-dark-border">
-                        <div className="flex flex-col md:flex-row items-center md:items-end -mt-[80px] md:-mt-[30px] gap-4 relative">
+                    <div className="px-4 md:px-8">
+                        <div className="flex flex-col md:flex-row items-center md:items-end -mt-[32px] md:-mt-[30px] lg:-mt-[40px] gap-4 relative pb-4 border-b border-gray-300 dark:border-dark-border">
 
                             {/* Profile Picture */}
-                            <div className="relative">
-                                <div className="w-[168px] h-[168px] rounded-full border-[4px] border-light-card dark:border-dark-card bg-light-card dark:bg-dark-card overflow-hidden relative">
+                            <div className="relative z-10">
+                                <div className="w-[168px] h-[168px] rounded-full border-[4px] border-white dark:border-dark-card bg-[#F0F2F5] overflow-hidden relative">
                                     <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" className="w-full h-full object-cover" alt="Profile" />
                                 </div>
-                                <div className="absolute bottom-2 right-2 bg-light-bg dark:bg-dark-hover w-9 h-9 rounded-full flex items-center justify-center cursor-pointer border-2 border-white dark:border-dark-card hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">
-                                    <FaCamera className="text-light-text dark:text-dark-text text-lg" />
+                                <div className="absolute bottom-3 right-2 bg-[#E4E6EB] dark:bg-dark-hover w-9 h-9 rounded-full flex items-center justify-center cursor-pointer border-2 border-white dark:border-dark-card hover:bg-[#D8DADF] transition-colors z-20">
+                                    <FaCamera className="text-[#050505] dark:text-dark-text text-lg" />
                                 </div>
                             </div>
 
                             {/* Name & Friends */}
-                            <div className="flex-1 text-center md:text-left mb-2 md:mb-4">
-                                <h1 className="text-[32px] font-bold text-light-text dark:text-dark-text leading-tight">Ravinder Yadav</h1>
-                                <span className="text-light-text2 dark:text-dark-text2 font-semibold text-[15px] hover:underline cursor-pointer">1.2k friends</span>
+                            <div className="flex-1 text-center md:text-left mb-2 md:mb-4 pt-4 md:pt-0">
+                                <h1 className="text-[32px] font-bold text-[#050505] dark:text-dark-text leading-tight">Ravinder Yadav</h1>
+                                <span className="text-[#65676B] dark:text-dark-text2 font-semibold text-[15px] hover:underline cursor-pointer">1.2k friends</span>
                                 <div className="flex items-center justify-center md:justify-start gap-1 mt-1">
-                                    {/* Friend avatars overlapping */}
                                     <div className="flex -space-x-2">
-                                        {friends.slice(0, 5).map(f => (
-                                            <img key={f.id} src={f.img} className="w-8 h-8 rounded-full border-2 border-light-card dark:border-dark-card hover:z-10 cursor-pointer" />
+                                        {friends.slice(0, 8).map(f => (
+                                            <img key={f.id} src={f.img} className="w-8 h-8 rounded-full border-2 border-white dark:border-dark-card hover:z-10 cursor-pointer object-cover" />
                                         ))}
                                     </div>
                                 </div>
                             </div>
 
                             {/* Action Buttons */}
-                            <div className="flex flex-col md:flex-row gap-3 mb-4 w-full md:w-auto px-4 md:px-0">
-                                <button className="bg-fb text-white px-4 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors">
-                                    <FaPlus /> Add to Story
+                            <div className="flex gap-2 mb-4">
+                                <button className="bg-fb text-white px-3 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-blue-600 transition-colors text-[15px]">
+                                    <FaPlus /> Add to story
                                 </button>
-                                <button className="bg-light-bg dark:bg-dark-hover text-light-text dark:text-dark-text px-4 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">
-                                    <MdEdit /> Edit profile
+                                <button className="bg-[#E4E6EB] dark:bg-dark-hover text-[#050505] dark:text-dark-text px-3 py-2 rounded-md font-semibold flex items-center justify-center gap-2 hover:bg-[#D8DADF] transition-colors text-[15px]">
+                                    <MdEdit className="text-xl" /> Edit profile
                                 </button>
-                                <button className="bg-light-bg dark:bg-dark-hover text-light-text dark:text-dark-text px-4 py-2 rounded-md font-semibold flex items-center justify-center w-12 hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">
-                                    <FaChevronDown />
+                                <button className="bg-[#E4E6EB] dark:bg-dark-hover text-[#050505] dark:text-dark-text px-3 py-2 rounded-md font-semibold flex items-center justify-center hover:bg-[#D8DADF] transition-colors">
+                                    <FaChevronDown className="text-xs" />
                                 </button>
                             </div>
-
                         </div>
-                    </div>
 
-                    {/* Navigation Tabs */}
-                    <div className="px-4 md:px-8 mt-1">
-                        <div className="flex items-center gap-1">
-                            {['Posts', 'About', 'Friends', 'Photos', 'Videos', 'Reels'].map((tab, i) => (
-                                <div key={i} className={`px-4 py-4 font-semibold text-[15px] cursor-pointer rounded-md hover:bg-light-bg dark:hover:bg-dark-hover ${i === 0 ? 'text-fb border-b-[3px] border-fb rounded-b-none' : 'text-light-text2 dark:text-dark-text2'}`}>
+                        {/* Navigation Tabs */}
+                        <div className="flex items-center">
+                            {['Posts', 'About', 'Friends', 'Photos', 'Videos', 'Check-ins', 'More'].map((tab, i) => (
+                                <div key={i} className={`px-4 py-4 font-semibold text-[15px] cursor-pointer relative hover:bg-gray-100 dark:hover:bg-dark-hover rounded-md transition-colors ${i === 0 ? 'text-fb' : 'text-[#65676B] dark:text-dark-text2'}`}>
                                     {tab}
+                                    {i === 0 && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-fb rounded-t-sm"></div>}
+                                    {tab === 'More' && <FaChevronDown className="inline ml-1 text-[10px]" />}
                                 </div>
                             ))}
-                            <div className="ml-auto flex items-center gap-2 bg-light-bg dark:bg-dark-hover px-3 py-2 rounded-md cursor-pointer hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">
-                                <BsThreeDots className="text-light-text dark:text-dark-text" />
-                            </div>
+                            <button className="ml-auto w-12 h-9 flex items-center justify-center bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] rounded-md transition-colors">
+                                <BsThreeDots className="text-xl" />
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -110,62 +108,64 @@ export default function Profile() {
             <div className="max-w-[1095px] mx-auto pt-6 flex flex-col lg:flex-row px-4 gap-4 text-light-text dark:text-dark-text">
 
                 {/* Left Sidebar (Intro, Photos, Friends) */}
-                <div className="w-full lg:w-[40%] flex flex-col gap-4 sticky top-[70px] h-fit">
+                <div className="w-full lg:w-[415px] flex flex-col gap-4">
 
                     {/* Intro Card */}
-                    <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm">
-                        <h3 className="font-bold text-[20px] mb-4 text-light-text dark:text-dark-text">Intro</h3>
-                        <div className="flex flex-col gap-3 text-[15px]">
-                            <div className="text-center text-sm mb-4 text-light-text dark:text-dark-text">
-                                Frontend Developer | React | Tailwind
-                            </div>
-                            <button className="bg-light-bg dark:bg-dark-hover w-full py-2 rounded-md font-semibold hover:bg-light-hover dark:hover:bg-[#4E4F50] text-light-text dark:text-dark-text transition-colors">Edit Bio</button>
+                    <div className="fb-card p-4">
+                        <h3 className="font-bold text-[20px] mb-3 text-[#050505] dark:text-dark-text">Intro</h3>
+                        <div className="flex flex-col gap-3">
+                            <p className="text-center text-[15px] text-[#050505] dark:text-dark-text leading-snug">
+                                Frontend Developer | React | Tailwind | Pixel Perfect Designs 🚀
+                            </p>
+                            <button className="bg-[#E4E6EB] dark:bg-dark-hover w-full py-2 rounded-md font-semibold hover:bg-[#D8DADF] transition-colors text-[15px]">Edit bio</button>
 
-                            <div className="flex items-center gap-2 text-light-text2 dark:text-dark-text2 mt-2">
-                                <span className="font-semibold text-light-text dark:text-dark-text">Studied at</span> University of Delhi
-                            </div>
-                            <div className="flex items-center gap-2 text-light-text2 dark:text-dark-text2">
-                                <span className="font-semibold text-light-text dark:text-dark-text">Lives in</span> New Delhi, India
-                            </div>
-                            <div className="flex items-center gap-2 text-light-text2 dark:text-dark-text2">
-                                <span className="font-semibold text-light-text dark:text-dark-text">Joined</span> January 2018
+                            <div className="space-y-3 mt-2">
+                                <div className="flex items-center gap-2 text-[15px]">
+                                    <span className="text-[#65676B] dark:text-dark-text2">Works as</span> <span className="font-semibold">Software Engineer</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-[15px]">
+                                    <span className="text-[#65676B] dark:text-dark-text2">Studied at</span> <span className="font-semibold">University of Delhi</span>
+                                </div>
+                                <div className="flex items-center gap-2 text-[15px]">
+                                    <span className="text-[#65676B] dark:text-dark-text2">Lives in</span> <span className="font-semibold">New Delhi, India</span>
+                                </div>
                             </div>
 
-                            <button className="bg-light-bg dark:bg-dark-hover w-full py-2 rounded-md font-semibold mt-2 hover:bg-light-hover dark:hover:bg-[#4E4F50] text-light-text dark:text-dark-text transition-colors">Edit details</button>
-                            <button className="bg-light-bg dark:bg-dark-hover w-full py-2 rounded-md font-semibold hover:bg-light-hover dark:hover:bg-[#4E4F50] text-light-text dark:text-dark-text transition-colors">Add hobbies</button>
+                            <button className="bg-[#E4E6EB] dark:bg-dark-hover w-full py-2 rounded-md font-semibold mt-2 hover:bg-[#D8DADF] transition-colors text-[15px]">Edit details</button>
+                            <button className="bg-[#E4E6EB] dark:bg-dark-hover w-full py-2 rounded-md font-semibold hover:bg-[#D8DADF] transition-colors text-[15px]">Add hobbies</button>
                         </div>
                     </div>
 
                     {/* Photos Card */}
-                    <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm">
+                    <div className="fb-card p-4">
                         <div className="flex justify-between items-center mb-4">
-                            <h3 className="font-bold text-[20px] hover:underline cursor-pointer text-light-text dark:text-dark-text">Photos</h3>
-                            <span className="text-fb text-[17px] cursor-pointer hover:underline">See all photos</span>
+                            <h3 className="font-bold text-[20px] hover:underline cursor-pointer">Photos</h3>
+                            <button className="text-fb text-[17px] hover:bg-gray-100 dark:hover:bg-dark-hover px-2 py-1 rounded-md transition-colors">See all photos</button>
                         </div>
-                        <div className="grid grid-cols-3 gap-1 rounded-lg overflow-hidden">
-                            {photos.map((src, i) => (
-                                <div key={i} className="aspect-square cursor-pointer hover:opacity-90">
-                                    <img src={src} className="w-full h-full object-cover" />
+                        <div className="grid grid-cols-3 gap-1 rounded-lg overflow-hidden border border-gray-200 dark:border-dark-border">
+                            {photos.slice(0, 9).map((src, i) => (
+                                <div key={i} className="aspect-square cursor-pointer hover:opacity-90 overflow-hidden">
+                                    <img src={src} className="w-full h-full object-cover transition-transform hover:scale-105" alt="User upload" />
                                 </div>
                             ))}
                         </div>
                     </div>
 
                     {/* Friends Card */}
-                    <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm">
+                    <div className="fb-card p-4">
                         <div className="flex justify-between items-start mb-4">
                             <div>
-                                <h3 className="font-bold text-[20px] hover:underline cursor-pointer text-light-text dark:text-dark-text">Friends</h3>
-                                <p className="text-light-text2 dark:text-dark-text2 text-sm">1,245 friends</p>
+                                <h3 className="font-bold text-[20px] hover:underline cursor-pointer">Friends</h3>
+                                <p className="text-[#65676B] dark:text-dark-text2 text-[15px]">1,245 friends</p>
                             </div>
-                            <span className="text-fb text-[17px] cursor-pointer hover:underline">See all friends</span>
+                            <button className="text-fb text-[17px] hover:bg-gray-100 dark:hover:bg-dark-hover px-2 py-1 rounded-md transition-colors">See all friends</button>
                         </div>
-                        <div className="grid grid-cols-3 gap-3">
+                        <div className="grid grid-cols-3 gap-x-2 gap-y-4">
                             {friends.slice(0, 9).map((f) => (
-                                <div key={f.id} className="cursor-pointer">
-                                    <img src={f.img} className="w-full h-full aspect-square object-cover rounded-md mb-1" />
-                                    <p className="text-[13px] font-semibold leading-tight text-light-text dark:text-dark-text">{f.name}</p>
-                                </div>
+                                <Link to="/profile" key={f.id} className="cursor-pointer group">
+                                    <img src={f.img} className="w-full aspect-square object-cover rounded-lg mb-1.5 group-hover:opacity-90 transition-opacity" alt={f.name} />
+                                    <p className="text-[13px] font-semibold leading-tight text-[#050505] dark:text-dark-text hover:underline">{f.name}</p>
+                                </Link>
                             ))}
                         </div>
                     </div>
@@ -178,11 +178,15 @@ export default function Profile() {
 
                     {/* Posts List */}
                     <div className="flex flex-col gap-4">
-                        <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm flex justify-between items-center text-light-text dark:text-dark-text">
-                            <h3 className="font-bold text-[20px]">Posts</h3>
+                        <div className="fb-card p-4 flex justify-between items-center">
+                            <h3 className="font-bold text-[20px] text-[#050505] dark:text-dark-text">Posts</h3>
                             <div className="flex gap-2">
-                                <button className="bg-light-bg dark:bg-dark-hover px-3 py-1.5 rounded-md font-semibold text-sm hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">Filters</button>
-                                <button className="bg-light-bg dark:bg-dark-hover px-3 py-1.5 rounded-md font-semibold text-sm hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">Manage posts</button>
+                                <button className="bg-[#E4E6EB] dark:bg-dark-hover px-3 py-1.5 rounded-md font-semibold text-sm hover:bg-[#D8DADF] transition-colors">
+                                    <span className="flex items-center gap-1"><MdEdit className="text-xl" /> Filters</span>
+                                </button>
+                                <button className="bg-[#E4E6EB] dark:bg-dark-hover px-3 py-1.5 rounded-md font-semibold text-sm hover:bg-[#D8DADF] transition-colors">
+                                    <span className="flex items-center gap-1">Manage posts</span>
+                                </button>
                             </div>
                         </div>
 

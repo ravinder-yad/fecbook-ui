@@ -38,19 +38,19 @@ export default function Navbar() {
     return (
         <>
             {/* ================= DESKTOP NAVBAR ================= */}
-            <div className="bg-light-card dark:bg-dark-card sticky top-0 z-50 h-[56px] flex items-center justify-between px-4 hidden md:flex shadow-sm border-b border-light-border dark:border-dark-border">
+            <div className="bg-white dark:bg-dark-card sticky top-0 z-50 h-[56px] flex items-center justify-between px-4 hidden md:flex shadow-sm border-b border-light-border dark:border-dark-border">
 
                 {/* Left: Logo & Search */}
                 <div className="flex items-center gap-2">
                     <Link to="/" className="flex-shrink-0">
-                        <BsFacebook className="text-fb text-[40px] bg-white dark:bg-transparent rounded-full" />
+                        <BsFacebook className="text-fb text-[40px] bg-white rounded-full" />
                     </Link>
-                    <div className="flex items-center bg-light-bg dark:bg-dark-hover rounded-full px-3 py-2.5 h-10 w-[240px] xl:w-[280px] group transition-all duration-300 focus-within:ring-1 focus-within:ring-gray-300 dark:focus-within:ring-gray-600">
-                        <AiOutlineSearch className="text-light-text2 dark:text-dark-text2 text-xl group-focus-within:hidden transition-all" />
+                    <div className="flex items-center bg-[#F0F2F5] dark:bg-dark-hover rounded-full px-3 py-2 h-10 w-[240px] xl:w-[280px] group transition-all duration-300 focus-within:ring-0">
+                        <AiOutlineSearch className="text-[#65676B] dark:text-dark-text2 text-xl group-focus-within:hidden transition-all" />
                         <input
                             type="text"
-                            placeholder="Pixel-perfect Search"
-                            className="bg-transparent border-none outline-none ml-2 w-full text-[15px] placeholder-light-text2 dark:placeholder-dark-text2 text-light-text dark:text-dark-text group-focus-within:ml-0"
+                            placeholder="Search Facebook"
+                            className="bg-transparent border-none outline-none ml-2 w-full text-[15px] placeholder-[#65676B] dark:placeholder-dark-text2 text-light-text dark:text-dark-text group-focus-within:ml-0"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyDown={handleSearch}
@@ -69,17 +69,15 @@ export default function Navbar() {
                                     key={item.id}
                                     to={item.link}
                                     className={`
-                            h-[50px] w-full max-w-[110px] flex items-center justify-center cursor-pointer rounded-lg my-1 mx-1 group relative
-                            hover:bg-light-hover dark:hover:bg-dark-hover transition-colors duration-200
+                            h-[52px] w-full max-w-[110px] flex items-center justify-center cursor-pointer rounded-lg my-1 mx-1 group relative
+                            ${!isActive && 'hover:bg-[#F2F2F2] dark:hover:bg-dark-hover'} transition-colors duration-200
                         `}
+                                    title={item.label}
                                 >
-                                    <Icon className={`text-[28px] ${isActive ? 'text-fb dark:text-dark-link' : 'text-light-text2 dark:text-dark-text2'} transition-colors duration-200`} />
+                                    <Icon className={`text-[28px] ${isActive ? 'text-fb' : 'text-[#65676B] dark:text-dark-text2'} transition-colors duration-200`} />
                                     {isActive && (
-                                        <div className="absolute bottom-[-3px] h-[3px] bg-fb dark:bg-dark-link w-full rounded-t-sm"></div>
+                                        <div className="absolute bottom-[-2px] h-[3px] bg-fb w-full rounded-t-sm"></div>
                                     )}
-                                    <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none top-[55px] bg-black/80 text-white text-[13px] px-3 py-1.5 rounded-lg z-50 whitespace-nowrap shadow-lg">
-                                        {item.label}
-                                    </div>
                                 </Link>
                             )
                         })}
@@ -87,57 +85,45 @@ export default function Navbar() {
                 </div>
 
                 {/* Right: Actions */}
-                <div className="flex items-center gap-2 sm:gap-3 pl-2 justify-end min-w-[200px]">
+                <div className="flex items-center gap-2 pl-2 justify-end min-w-[200px]">
 
-                    {/* Dark Mode Toggle */}
-                    <div onClick={toggleTheme} className="w-10 h-10 bg-light-hover dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] active:scale-95 rounded-full flex items-center justify-center cursor-pointer transition-all relative group">
-                        {darkMode ? <BsSunFill className="text-white text-[20px]" /> : <BsMoonFill className="text-black text-[20px]" />}
-                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none top-[50px] bg-black/80 text-white text-[13px] px-3 py-1.5 rounded-lg z-50 whitespace-nowrap shadow-lg">
-                            {darkMode ? 'Light Mode' : 'Dark Mode'}
+                    {/* Menu Button */}
+                    <div className="w-10 h-10 bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] rounded-full flex items-center justify-center cursor-pointer transition-all">
+                        <CgMenuGridO className="text-black dark:text-dark-text text-[22px]" />
+                    </div>
+
+                    {/* Messenger */}
+                    <div className="w-10 h-10 bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] rounded-full flex items-center justify-center cursor-pointer transition-all relative">
+                        <BsMessenger className="text-black dark:text-dark-text text-[20px]" />
+                        <div className="absolute -top-1 -right-1 bg-[#E41E3F] text-white text-[12px] font-bold px-1.5 h-[18px] flex items-center justify-center rounded-full border-2 border-white dark:border-dark-card">
+                            2
                         </div>
                     </div>
 
-                    {/* Menu Button Link */}
-                    <Link to="/menu" className="w-10 h-10 bg-light-hover dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] active:scale-95 rounded-full flex items-center justify-center cursor-pointer transition-all relative group">
-                        <CgMenuGridO className={`text-[24px] ${location.pathname === '/menu' ? 'text-fb' : 'text-light-text dark:text-dark-text'}`} />
-                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none top-[50px] bg-black/80 text-white text-[13px] px-3 py-1.5 rounded-lg z-50 whitespace-nowrap shadow-lg">
-                            Menu
-                        </div>
-                    </Link>
-
-                    {/* Messenger Link */}
-                    <Link to="/messenger" className="w-10 h-10 bg-light-hover dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] active:scale-95 rounded-full flex items-center justify-center cursor-pointer transition-all relative group">
-                        <BsMessenger className={`text-[20px] ${location.pathname === '/messenger' ? 'text-fb' : 'text-light-text dark:text-dark-text'}`} />
-                        <div className="absolute -top-1.5 -right-1 bg-light-error dark:bg-dark-error text-white text-[13px] font-bold px-1 min-w-[19px] h-[19px] flex items-center justify-center rounded-full border-[2px] border-white dark:border-dark-card leading-none">
-                            2
-                        </div>
-                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none top-[50px] bg-black/80 text-white text-[13px] px-3 py-1.5 rounded-lg z-50 whitespace-nowrap shadow-lg">
-                            Messenger
-                        </div>
-                    </Link>
-
-                    {/* Notifications Link */}
-                    <Link to="/notifications" className="w-10 h-10 bg-light-hover dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] active:scale-95 rounded-full flex items-center justify-center cursor-pointer transition-all relative group">
-                        <IoNotificationsSharp className={`text-[20px] ${location.pathname === '/notifications' ? 'text-fb' : 'text-light-text dark:text-dark-text'}`} />
-                        <div className="absolute -top-1.5 -right-1 bg-light-error dark:bg-dark-error text-white text-[13px] font-bold px-1 min-w-[19px] h-[19px] flex items-center justify-center rounded-full border-[2px] border-white dark:border-dark-card leading-none">
+                    {/* Notifications */}
+                    <div className="w-10 h-10 bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] rounded-full flex items-center justify-center cursor-pointer transition-all relative">
+                        <IoNotificationsSharp className="text-black dark:text-dark-text text-[20px]" />
+                        <div className="absolute -top-1 -right-1 bg-[#E41E3F] text-white text-[12px] font-bold px-1.5 h-[18px] flex items-center justify-center rounded-full border-2 border-white dark:border-dark-card">
                             5
                         </div>
-                        <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none top-[50px] bg-black/80 text-white text-[13px] px-3 py-1.5 rounded-lg z-50 whitespace-nowrap shadow-lg">
-                            Notifications
-                        </div>
-                    </Link>
+                    </div>
 
-                    {/* Profile Link */}
-                    <Link to="/profile" className="cursor-pointer relative ml-1 active:scale-95 transition-transform group">
-                        <img
-                            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-                            alt="Profile"
-                            className="w-10 h-10 rounded-full object-cover border border-light-border dark:border-dark-border"
-                        />
-                        <div className="absolute bottom-0 right-0 w-[14px] h-[14px] bg-light-hover dark:bg-dark-card rounded-full border-2 border-white dark:border-dark-card flex items-center justify-center">
-                            <FaChevronDown className="text-light-text dark:text-dark-text text-[8px]" />
+                    {/* Profile & Theme Toggle */}
+                    <div className="flex items-center gap-2">
+                        <div 
+                            onClick={toggleTheme}
+                            className="w-10 h-10 bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] dark:hover:bg-[#4E4F50] rounded-full flex items-center justify-center cursor-pointer transition-all"
+                        >
+                            {darkMode ? <BsSunFill className="text-white text-[18px]" /> : <BsMoonFill className="text-black text-[18px]" />}
                         </div>
-                    </Link>
+                        <Link to="/profile" className="ml-1">
+                            <img
+                                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                                alt="Profile"
+                                className="w-10 h-10 rounded-full object-cover border border-[#CED0D4] dark:border-dark-border"
+                            />
+                        </Link>
+                    </div>
                 </div>
             </div>
 

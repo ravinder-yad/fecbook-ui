@@ -1,93 +1,131 @@
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-import { FaGlobe, FaEye, FaFolderOpen, FaThumbsUp, FaCommentAlt } from 'react-icons/fa';
+import CreatePost from '../components/CreatePost';
+import Post from '../components/Post';
+import { FaGlobe, FaEye, FaFolderOpen, FaThumbsUp, FaCommentAlt, FaSearch, FaUserPlus, FaChevronDown } from 'react-icons/fa';
+import { MdGroups, MdMoreHoriz, MdNotifications, MdShare } from 'react-icons/md';
 
 const StudyGroup = () => {
     return (
-        <div className="min-h-screen bg-light-bg dark:bg-dark-bg transition-colors">
+        <div className="min-h-screen bg-[#F0F2F5] dark:bg-dark-bg transition-colors pb-10">
             <Navbar />
-            <div className="flex pt-4">
-                <Sidebar />
-
-                <div className="flex-1 p-4 md:p-6 max-w-4xl mx-auto xl:ml-[360px]">
-                    {/* Header / Cover */}
-                    <div className="bg-light-card dark:bg-dark-card rounded-lg shadow-sm overflow-hidden mb-6">
-                        <div className="h-48 bg-gradient-to-r from-blue-600 to-indigo-600 relative">
-                            <div className="absolute bottom-4 left-4 text-white">
-                                <h1 className="text-3xl font-bold drop-shadow-md">📘 SSC CGL Exam Prep 2025</h1>
-                                <p className="opacity-90 drop-shadow-md">Private Group · 12.5k Members</p>
+            
+            <div className="max-w-[1250px] mx-auto w-full group">
+                {/* Header / Cover */}
+                <div className="bg-white dark:bg-dark-card shadow-sm rounded-b-lg overflow-hidden">
+                    <div className="h-[200px] md:h-[300px] lg:h-[360px] bg-gradient-to-r from-blue-700 to-indigo-800 relative cursor-pointer">
+                        <div className="absolute inset-0 bg-black/20 hover:bg-black/10 transition-colors"></div>
+                        <div className="absolute bottom-6 left-6 text-white z-10">
+                            <h1 className="text-[28px] md:text-[32px] font-bold drop-shadow-lg leading-tight">📘 SSC CGL Exam Prep 2025</h1>
+                            <div className="flex items-center gap-1.5 opacity-95 text-[15px] font-semibold mt-1">
+                                <FaGlobe className="text-[14px]" />
+                                <span>Public group</span>
+                                <span>·</span>
+                                <span>12.5k members</span>
                             </div>
                         </div>
-                        <div className="p-4 flex gap-2 border-t border-light-border dark:border-dark-border">
-                            <button className="bg-light-bg dark:bg-dark-hover hover:bg-light-hover dark:hover:bg-[#4E4F50] px-4 py-2 rounded-md font-semibold text-light-text dark:text-dark-text transition-colors">Joined</button>
-                            <button className="bg-fb text-white hover:bg-blue-600 px-4 py-2 rounded-md font-semibold transition-colors">+ Invite</button>
+                    </div>
+                    
+                    <div className="px-6 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div className="flex -space-x-2 cursor-pointer">
+                            {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+                                <img key={i} src={`https://randomuser.me/api/portraits/thumb/men/${i+10}.jpg`} className="w-8 h-8 rounded-full border-2 border-white dark:border-dark-card object-cover" alt="Member" />
+                            ))}
+                            <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-200 flex items-center justify-center text-[11px] font-bold">+12k</div>
+                        </div>
+                        <div className="flex gap-2">
+                            <button className="bg-fb text-white hover:bg-blue-600 px-4 py-2 rounded-md font-semibold transition-colors flex items-center gap-2 text-[15px]">
+                                <FaUserPlus /> Invite
+                            </button>
+                            <button className="bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] px-4 py-2 rounded-md font-semibold text-[#050505] dark:text-dark-text transition-colors flex items-center gap-2 text-[15px]">
+                                <MdShare className="text-xl" /> Share
+                            </button>
+                            <button className="bg-[#E4E6EB] dark:bg-dark-hover hover:bg-[#D8DADF] px-3 py-2 rounded-md font-semibold text-[#050505] dark:text-dark-text transition-colors">
+                                <FaChevronDown className="text-xs" />
+                            </button>
                         </div>
                     </div>
 
-                    {/* Content Grid */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-
-                        {/* Main Feed */}
-                        <div className="lg:col-span-2 space-y-4">
-                            {/* Announcement */}
-                            <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm border-l-4 border-red-500">
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <h3 className="text-red-600 font-bold uppercase text-xs mb-1">Important Announcement</h3>
-                                        <p className="font-semibold text-light-text dark:text-dark-text">📢 Teacher: Mock Test starts at 10:00 AM Tomorrow!</p>
-                                        <p className="text-sm text-light-text2 dark:text-dark-text2 mt-1">Syllabus: Quantitative Aptitude (Algebra). No calculator allowed.</p>
-                                    </div>
+                    <div className="px-6 border-t border-gray-200 dark:border-dark-border">
+                        <div className="flex items-center overflow-x-auto scrollbar-hide">
+                            {['About', 'Discussion', 'Featured', 'Members', 'Events', 'Media', 'Files'].map((tab, i) => (
+                                <div key={i} className={`px-4 py-4 font-semibold text-[15px] cursor-pointer relative whitespace-nowrap hover:bg-gray-100 dark:hover:bg-dark-hover rounded-md transition-colors ${tab === 'Discussion' ? 'text-fb' : 'text-[#65676B] dark:text-dark-text2'}`}>
+                                    {tab}
+                                    {tab === 'Discussion' && <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-fb rounded-t-sm"></div>}
                                 </div>
-                            </div>
-
-                            {/* Create Post */}
-                            <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm flex gap-3">
-                                <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-10 h-10 rounded-full border border-light-border dark:border-dark-border" alt="Profile" />
-                                <div className="bg-light-bg dark:bg-dark-hover rounded-full flex-1 px-4 flex items-center text-light-text2 dark:text-dark-text2 cursor-pointer hover:bg-light-hover dark:hover:bg-[#4E4F50] transition-colors">
-                                    Ask a doubt or share notes...
-                                </div>
-                            </div>
-
-                            {/* Group Post */}
-                            <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <img src="https://randomuser.me/api/portraits/men/55.jpg" className="w-10 h-10 rounded-full border border-light-border dark:border-dark-border" alt="User" />
-                                    <div>
-                                        <h4 className="font-semibold text-[15px] text-light-text dark:text-dark-text">Rohan Das</h4>
-                                        <span className="text-xs text-light-text2 dark:text-dark-text2">2 hours ago</span>
-                                    </div>
-                                </div>
-                                <p className="text-sm mb-3 text-light-text dark:text-dark-text">Can anyone solve this algebra problem? I'm getting stuck at step 3. 🤔</p>
-                                <div className="bg-light-bg dark:bg-dark-hover p-4 rounded-lg text-center text-light-text2 dark:text-dark-text2 italic border border-light-border dark:border-dark-border">
-                                    [Image of Math Problem]
-                                </div>
-                                <div className="flex gap-4 mt-3 text-light-text2 dark:text-dark-text2 text-sm font-semibold border-t border-light-border dark:border-dark-border pt-2">
-                                    <div className="cursor-pointer hover:text-fb flex items-center gap-1"><FaThumbsUp /> Like</div>
-                                    <div className="cursor-pointer hover:text-fb flex items-center gap-1"><FaCommentAlt /> Comment</div>
-                                </div>
-                            </div>
-
+                            ))}
+                            <button className="ml-auto w-10 h-10 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-dark-hover rounded-md transition-colors">
+                                <FaSearch className="text-[#65676B]" />
+                            </button>
+                            <button className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 dark:hover:bg-dark-hover rounded-md transition-colors">
+                                <MdMoreHoriz className="text-2xl text-[#65676B]" />
+                            </button>
                         </div>
+                    </div>
+                </div>
 
-                        {/* Right Panel */}
-                        <div className="space-y-4">
-                            <div className="bg-light-card dark:bg-dark-card p-4 rounded-lg shadow-sm">
-                                <h3 className="font-bold mb-3 text-light-text dark:text-dark-text">About</h3>
-                                <p className="text-sm text-light-text2 dark:text-dark-text2">Dedicated group for SSC CGL aspirants. Daily quizzes, notes sharing, and doubt solving.</p>
-                                <div className="mt-3 text-sm font-semibold text-light-text dark:text-dark-text">
-                                    <div className="flex items-center gap-2 mb-1"><FaGlobe /> Public</div>
-                                    <div className="flex items-center gap-2 mb-1"><FaEye /> Visible</div>
-                                    <div className="flex items-center gap-2"><FaFolderOpen /> Education</div>
-                                </div>
-                            </div>
-
-                            <div className="bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 p-4 rounded-lg border border-green-200 dark:border-green-800">
-                                <h3 className="font-bold text-sm mb-1">🧠 Quick Quiz</h3>
-                                <p className="text-xs mb-2">Topic: General Awareness</p>
-                                <button className="bg-green-600 text-white text-xs px-3 py-1.5 rounded font-semibold w-full hover:bg-green-700 transition-colors">Start Quiz Now</button>
+                {/* Content Grid */}
+                <div className="flex flex-col lg:flex-row gap-4 mt-4 px-1 md:px-0">
+                    {/* Main Feed */}
+                    <div className="flex-1 max-w-[740px]">
+                        <div className="fb-card p-4 mb-4 flex gap-3">
+                            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" className="w-10 h-10 rounded-full" alt="Profile" />
+                            <div className="bg-[#F0F2F5] dark:bg-dark-hover rounded-full flex-1 px-4 flex items-center text-[#65676B] dark:text-dark-text2 cursor-pointer hover:bg-[#E4E6EB] dark:hover:bg-[#4E4F50] transition-colors text-[17px]">
+                                Write something...
                             </div>
                         </div>
 
+                        <div className="fb-card p-4 mb-4 border-l-4 border-fb">
+                            <h3 className="text-fb font-bold uppercase text-[13px] mb-1">Featured Announcement</h3>
+                            <p className="font-semibold text-[#050505] dark:text-dark-text text-[15px]">📢 Teacher: Mock Test starts at 10:00 AM Tomorrow!</p>
+                            <p className="text-[14px] text-[#65676B] dark:text-dark-text2 mt-1">Syllabus: Quantitative Aptitude (Algebra). All the best everyone!</p>
+                        </div>
+
+                        <Post 
+                            profilePic="https://randomuser.me/api/portraits/men/55.jpg"
+                            username="Rohan Das"
+                            timestamp="2 hours ago"
+                            message="Can anyone solve this algebra problem? I'm getting stuck at step 3. 🤔"
+                        />
+                    </div>
+
+                    {/* Right Panel */}
+                    <div className="w-full lg:w-[360px] flex flex-col gap-4">
+                        <div className="fb-card p-4">
+                            <h3 className="font-bold text-[17px] mb-3 text-[#050505] dark:text-dark-text">About this group</h3>
+                            <p className="text-[15px] text-[#050505] dark:text-dark-text leading-snug">
+                                Dedicated group for SSC CGL aspirants. Daily quizzes, notes sharing, and doubt solving.
+                            </p>
+                            
+                            <div className="space-y-4 mt-4">
+                                <div className="flex gap-3">
+                                    <FaGlobe className="text-xl text-[#050505] dark:text-dark-text mt-0.5" />
+                                    <div>
+                                        <p className="font-semibold text-[15px]">Public</p>
+                                        <p className="text-[13px] text-[#65676B] dark:text-dark-text2">Anyone can see who's in the group and what they post.</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-3">
+                                    <FaEye className="text-xl text-[#050505] dark:text-dark-text mt-0.5" />
+                                    <div>
+                                        <p className="font-semibold text-[15px]">Visible</p>
+                                        <p className="text-[13px] text-[#65676B] dark:text-dark-text2">Anyone can find this group.</p>
+                                    </div>
+                                </div>
+                                <div className="flex gap-3">
+                                    <FaFolderOpen className="text-xl text-[#050505] dark:text-dark-text mt-0.5" />
+                                    <div>
+                                        <p className="font-semibold text-[15px]">General</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="fb-card p-4 bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/10 dark:to-emerald-900/10 border-green-100 dark:border-green-800">
+                            <h3 className="font-bold text-[15px] mb-2 text-green-800 dark:text-green-300">🧠 Practice Quiz</h3>
+                            <p className="text-[14px] mb-3 text-green-700 dark:text-green-400">Topic: General Awareness - Modern History</p>
+                            <button className="bg-green-600 text-white text-[14px] px-3 py-2 rounded-md font-semibold w-full hover:bg-green-700 transition-colors shadow-sm">Start Practice</button>
+                        </div>
                     </div>
                 </div>
             </div>

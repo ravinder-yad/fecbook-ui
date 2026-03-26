@@ -8,7 +8,7 @@ export default {
     theme: {
         extend: {
             colors: {
-                fb: "#1877F2",
+                fb: "#1877F2", // Official Facebook Blue
                 light: {
                     bg: "#F0F2F5",
                     card: "#FFFFFF",
@@ -17,7 +17,7 @@ export default {
                     hover: "#E4E6EB",
                     border: "#CED0D4",
                     error: "#E41E3F",
-                    success: "#31A24C",
+                    success: "#31A24C", // Facebook Green
                     link: "#1877F2"
                 },
                 dark: {
@@ -32,6 +32,13 @@ export default {
                     link: "#2D88FF"
                 },
             },
+            boxShadow: {
+                fb: '0 12px 28px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5)',
+                card: '0 1px 2px rgba(0, 0, 0, 0.2)',
+            },
+            borderRadius: {
+                'fb': '8px',
+            }
         },
     },
     plugins: [],
